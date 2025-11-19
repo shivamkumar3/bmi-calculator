@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BMI Result</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+
+<!-- Background bubbles -->
+<div class="bubble" style="width:180px;height:180px;left:20%;animation-duration:12s;"></div>
+<div class="bubble" style="width:260px;height:260px;left:60%;animation-duration:8s;"></div>
+
+<div class="card">
+    <h2>Your BMI Result</h2>
+
+    <p class="result-text">Your BMI: <strong th:text="${bmi}"></strong></p>
+
+    <p class="result-text">Category: 
+        <strong th:text="${category}"></strong>
+    </p>
+
+    <!-- Animated Progress Bar -->
+    <div class="progress"
+         th:style="'--progress:' + (${bmi} * 2) + '%;'">
+
+        <div class="progress-bar"
+             th:style="'--progress:' + (${bmi} * 2) + '%; 
+             background:' +
+             (${bmi} < 18.5 ? '#FFD54F' : 
+              (${bmi} < 25 ? '#00E676' : 
+              (${bmi} < 30 ? '#FF9100' : '#FF1744')))">
+        </div>
+    </div>
+
+    <a href="/" class="back-btn">← Calculate Again</a>
+</div>
+
+</body>
+</html>
